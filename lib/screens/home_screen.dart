@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../data/sample_apps_data.dart';
 import '../models/app_project.dart';
 import '../theme/promo_theme.dart';
-import '../utils/url_helper.dart';
 import '../widgets/app_category_card.dart';
 import '../widgets/app_project_card.dart';
 import '../widgets/app_roadmap_section.dart';
@@ -12,6 +11,7 @@ import '../widgets/development_process_section.dart';
 import '../widgets/footer_section.dart';
 import '../widgets/hero_section.dart';
 import '../widgets/promo_link_section.dart';
+import '../widgets/responsive_card_grid.dart';
 import '../widgets/section_title.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,8 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
-
     return Scaffold(
       body: SelectionArea(
         child: CustomScrollView(
@@ -61,15 +59,111 @@ class _HomeScreenState extends State<HomeScreen> {
                 onContactTap: () => _scrollTo(_contactKey),
               ),
             ),
-            SliverToBoxAdapter(child: _buildDirectionSection(width)),
+            SliverToBoxAdapter(
+              child: SectionContainer(
+                id: 'direction',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SectionTitle(
+                      title: '소통웨어가 만드는 앱의 방향',
+                      subtitle: '생활밀착형 AI 앱을 단계적으로 기획·개발·확장하는 6가지 방향입니다.',
+                    ),
+                    const SizedBox(height: 40),
+                    ResponsiveCardGrid(
+                      itemCount: developmentDirections.length,
+                      minCardWidth: 300,
+                      maxColumns: 3,
+                      itemBuilder: (context, index) => DevelopmentDirectionCard(
+                        direction: developmentDirections[index],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             SliverToBoxAdapter(
               key: _portfolioKey,
-              child: _buildPortfolioSection(width),
+              child: SectionContainer(
+                alternate: true,
+                id: 'portfolio',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SectionTitle(
+                      title: '앱 포트폴리오',
+                      subtitle: '소통웨어에서 개발 중이거나 준비 중인 앱 포트폴리오입니다.',
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      promoDeployNotice,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontSize: 14,
+                        color: PromoTheme.mutedGray,
+                        height: 1.55,
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    ResponsiveCardGrid(
+                      itemCount: sampleApps.length,
+                      minCardWidth: 360,
+                      maxColumns: 2,
+                      spacing: 24,
+                      itemBuilder: (context, index) =>
+                          AppProjectCard(project: sampleApps[index]),
+                    ),
+                  ],
+                ),
+              ),
             ),
-            SliverToBoxAdapter(child: _buildCategorySection(width)),
+            SliverToBoxAdapter(
+              child: SectionContainer(
+                id: 'categories',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SectionTitle(
+                      title: '확장 가능한 앱 카테고리',
+                      subtitle: '새로운 앱 아이디어가 생기면 카테고리별로 계속 확장할 수 있습니다.',
+                    ),
+                    const SizedBox(height: 40),
+                    ResponsiveCardGrid(
+                      itemCount: appCategories.length,
+                      minCardWidth: 240,
+                      maxColumns: 4,
+                      itemBuilder: (context, index) =>
+                          AppCategoryCard(category: appCategories[index]),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             const SliverToBoxAdapter(child: DevelopmentProcessSection()),
             const SliverToBoxAdapter(child: PromoLinkSection()),
-            SliverToBoxAdapter(child: _buildMonetizationSection(width)),
+            SliverToBoxAdapter(
+              child: SectionContainer(
+                alternate: true,
+                id: 'monetization',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SectionTitle(
+                      title: '앱 수익화 방향',
+                      subtitle: '광고, 유료 기능, 구독, 제휴 등 수익 모델을 검토합니다.',
+                    ),
+                    const SizedBox(height: 40),
+                    ResponsiveCardGrid(
+                      itemCount: monetizationCards.length,
+                      minCardWidth: 280,
+                      maxColumns: 3,
+                      itemBuilder: (context, index) => MonetizationCardWidget(
+                        card: monetizationCards[index],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             SliverToBoxAdapter(
               key: _developingKey,
               child: const AppRoadmapSection(),
@@ -78,130 +172,6 @@ class _HomeScreenState extends State<HomeScreen> {
             const SliverToBoxAdapter(child: FooterSection()),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildDirectionSection(double width) {
-    final columns = gridColumns(width, max: 3);
-
-    return SectionContainer(
-      child: Column(
-        children: [
-          const SectionTitle(title: '소통웨어가 만드는 앱의 방향'),
-          const SizedBox(height: 48),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: columns,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              childAspectRatio: columns >= 2 ? 1.15 : 1.05,
-            ),
-            itemCount: developmentDirections.length,
-            itemBuilder: (context, index) {
-              return DevelopmentDirectionCard(
-                direction: developmentDirections[index],
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPortfolioSection(double width) {
-    final columns = responsiveColumns(width);
-
-    return SectionContainer(
-      backgroundColor: PromoTheme.softGray,
-      child: Column(
-        children: [
-          const SectionTitle(title: '앱 포트폴리오'),
-          const SizedBox(height: 16),
-          Text(
-            promoDeployNotice,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              fontSize: 14,
-              color: PromoTheme.mutedGray,
-            ),
-          ),
-          const SizedBox(height: 32),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: columns,
-              crossAxisSpacing: 24,
-              mainAxisSpacing: 24,
-              childAspectRatio: columns == 1 ? 0.55 : 0.62,
-            ),
-            itemCount: sampleApps.length,
-            itemBuilder: (context, index) {
-              return AppProjectCard(project: sampleApps[index]);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCategorySection(double width) {
-    final columns = gridColumns(width, max: 4);
-
-    return SectionContainer(
-      child: Column(
-        children: [
-          const SectionTitle(
-            title: '확장 가능한 앱 카테고리',
-            subtitle: '새로운 앱 아이디어가 생기면 카테고리별로 계속 확장할 수 있습니다.',
-          ),
-          const SizedBox(height: 48),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: columns,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              childAspectRatio: columns >= 3 ? 1.1 : 1.05,
-            ),
-            itemCount: appCategories.length,
-            itemBuilder: (context, index) {
-              return AppCategoryCard(category: appCategories[index]);
-            },
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildMonetizationSection(double width) {
-    final columns = gridColumns(width, max: 3);
-
-    return SectionContainer(
-      backgroundColor: Colors.white,
-      child: Column(
-        children: [
-          const SectionTitle(title: '앱 수익화 방향'),
-          const SizedBox(height: 48),
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: columns,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              childAspectRatio: columns >= 2 ? 1.25 : 1.1,
-            ),
-            itemCount: monetizationCards.length,
-            itemBuilder: (context, index) {
-              return MonetizationCardWidget(card: monetizationCards[index]);
-            },
-          ),
-        ],
       ),
     );
   }

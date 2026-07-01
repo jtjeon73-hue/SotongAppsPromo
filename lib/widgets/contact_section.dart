@@ -11,6 +11,7 @@ class ContactSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SectionContainer(
+      id: 'contact',
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(48),
@@ -18,7 +19,7 @@ class ContactSection extends StatelessWidget {
           gradient: const LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [PromoTheme.deepNavy, PromoTheme.navyMid],
+            colors: [PromoColors.deepNavy, PromoColors.charcoal],
           ),
           borderRadius: BorderRadius.circular(28),
           boxShadow: [
@@ -44,7 +45,7 @@ class ContactSection extends StatelessWidget {
               children: [
                 const Icon(
                   Icons.email_outlined,
-                  color: PromoTheme.teal,
+                  color: PromoColors.goldLight,
                   size: 22,
                 ),
                 const SizedBox(width: 10),
@@ -61,8 +62,8 @@ class ContactSection extends StatelessWidget {
               onPressed: () =>
                   launchEmail(email: contactEmail, subject: '소통웨어 앱개발 문의'),
               style: ElevatedButton.styleFrom(
-                backgroundColor: PromoTheme.teal,
-                foregroundColor: PromoTheme.deepNavy,
+                backgroundColor: PromoColors.gold,
+                foregroundColor: PromoColors.deepNavy,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 32,
                   vertical: 18,

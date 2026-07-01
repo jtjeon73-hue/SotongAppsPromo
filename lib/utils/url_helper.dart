@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// Flutter Web에서는 [canLaunchUrl]이 https URL에 false를 반환하는 경우가 있어
@@ -27,45 +26,4 @@ Future<bool> launchEmail({required String email, String? subject}) async {
   } catch (_) {
     return false;
   }
-}
-
-class SectionContainer extends StatelessWidget {
-  const SectionContainer({
-    super.key,
-    required this.child,
-    this.backgroundColor,
-    this.padding,
-  });
-
-  final Widget child;
-  final Color? backgroundColor;
-  final EdgeInsetsGeometry? padding;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: backgroundColor,
-      padding:
-          padding ?? const EdgeInsets.symmetric(horizontal: 24, vertical: 72),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1200),
-          child: child,
-        ),
-      ),
-    );
-  }
-}
-
-int responsiveColumns(double width) {
-  if (width >= 1100) return 3;
-  if (width >= 720) return 2;
-  return 1;
-}
-
-int gridColumns(double width, {int max = 4}) {
-  if (width >= 1100) return max;
-  if (width >= 800) return max > 2 ? 2 : max;
-  return 1;
 }

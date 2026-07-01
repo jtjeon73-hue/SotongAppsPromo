@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../data/sample_apps_data.dart';
 import '../theme/promo_theme.dart';
+import 'promo_badge.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({
@@ -19,6 +20,7 @@ class HeroSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.sizeOf(context).width;
     final isWide = width >= 900;
+    final isNarrow = width < 600;
 
     return Container(
       width: double.infinity,
@@ -26,42 +28,20 @@ class HeroSection extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            top: -80,
-            right: -40,
-            child: Container(
-              width: 320,
-              height: 320,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    PromoTheme.purple.withValues(alpha: 0.25),
-                    Colors.transparent,
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -60,
-            left: -20,
-            child: Container(
-              width: 280,
-              height: 280,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                gradient: RadialGradient(
-                  colors: [
-                    PromoTheme.teal.withValues(alpha: 0.2),
-                    Colors.transparent,
-                  ],
-                ),
+            right: -60,
+            top: -40,
+            child: Opacity(
+              opacity: 0.08,
+              child: Icon(
+                Icons.apps_rounded,
+                size: isNarrow ? 180 : 280,
+                color: PromoColors.gold,
               ),
             ),
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: isWide ? 48 : 24,
+              horizontal: isNarrow ? 20 : (isWide ? 48 : 24),
               vertical: isWide ? 96 : 72,
             ),
             child: Center(
@@ -73,19 +53,24 @@ class HeroSection extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 14,
-                        vertical: 8,
+                        vertical: 6,
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(999),
-                        border: Border.all(color: Colors.white24),
+                        color: PromoColors.badgeBackground.withValues(
+                          alpha: 0.9,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: PromoColors.gold.withValues(alpha: 0.55),
+                        ),
                       ),
                       child: const Text(
                         'Sotong Apps Lab',
                         style: TextStyle(
-                          color: PromoTheme.teal,
+                          color: PromoColors.badgeText,
+                          fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
+                          letterSpacing: 0.8,
                         ),
                       ),
                     ),
@@ -93,14 +78,16 @@ class HeroSection extends StatelessWidget {
                     Text(
                       '소통웨어 앱개발',
                       style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                        fontSize: isWide ? 52 : 36,
+                        color: PromoColors.white,
+                        fontSize: isWide ? 52 : (isNarrow ? 32 : 36),
                       ),
                     ),
                     const SizedBox(height: 12),
                     Text(
                       'AI와 생활밀착 아이디어를 앱으로 만듭니다',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        color: PromoTheme.teal,
+                        color: PromoColors.goldLight,
+                        fontWeight: FontWeight.w500,
                         fontSize: isWide ? 24 : 20,
                       ),
                     ),
@@ -113,8 +100,9 @@ class HeroSection extends StatelessWidget {
                         'Flutter 기반 앱 개발, Android APK 테스트, Play Store 배포 준비, 개별 프로모 사이트 제작까지 '
                         '앱 출시 흐름 전체를 단계적으로 만들어갑니다.',
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.white.withValues(alpha: 0.82),
-                          fontSize: 16,
+                          color: PromoColors.beige.withValues(alpha: 0.9),
+                          fontSize: isNarrow ? 15 : 16,
+                          height: 1.7,
                         ),
                       ),
                     ),
@@ -125,19 +113,30 @@ class HeroSection extends StatelessWidget {
                       children: [
                         ElevatedButton.icon(
                           onPressed: onPortfolioTap,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: PromoColors.gold,
+                            foregroundColor: PromoColors.deepNavy,
+                          ),
                           icon: const Icon(Icons.grid_view_rounded, size: 20),
                           label: const Text('앱 포트폴리오 보기'),
                         ),
                         OutlinedButton.icon(
                           onPressed: onDevelopingTap,
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: PromoColors.white,
+                            side: const BorderSide(color: PromoColors.gold),
+                          ),
                           icon: const Icon(
                             Icons.construction_outlined,
                             size: 20,
                           ),
                           label: const Text('개발 중인 앱 보기'),
                         ),
-                        OutlinedButton.icon(
+                        TextButton.icon(
                           onPressed: onContactTap,
+                          style: TextButton.styleFrom(
+                            foregroundColor: PromoColors.beige,
+                          ),
                           icon: const Icon(
                             Icons.mail_outline_rounded,
                             size: 20,
@@ -152,26 +151,9 @@ class HeroSection extends StatelessWidget {
                       runSpacing: 10,
                       children: heroBadges
                           .map(
-                            (badge) => Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 14,
-                                vertical: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.08),
-                                borderRadius: BorderRadius.circular(999),
-                                border: Border.all(
-                                  color: Colors.white.withValues(alpha: 0.15),
-                                ),
-                              ),
-                              child: Text(
-                                badge,
-                                style: TextStyle(
-                                  color: Colors.white.withValues(alpha: 0.9),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
+                            (badge) => PromoBadge(
+                              label: badge,
+                              style: PromoBadgeStyle.hero,
                             ),
                           )
                           .toList(),

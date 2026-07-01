@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/app_category.dart';
 import '../theme/promo_theme.dart';
+import 'promo_badge.dart';
 
 class AppCategoryCard extends StatelessWidget {
   const AppCategoryCard({super.key, required this.category});
@@ -41,24 +42,7 @@ class AppCategoryCard extends StatelessWidget {
               ).textTheme.bodyMedium?.copyWith(fontSize: 14),
             ),
             const SizedBox(height: 16),
-            Row(
-              children: [
-                Icon(
-                  Icons.add_circle_outline_rounded,
-                  size: 16,
-                  color: category.accentColor,
-                ),
-                const SizedBox(width: 6),
-                Text(
-                  '새 앱 추가 가능',
-                  style: TextStyle(
-                    color: category.accentColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
+            const PromoBadge(label: '새 앱 추가 가능', style: PromoBadgeStyle.tag),
           ],
         ),
       ),
@@ -84,15 +68,14 @@ class DevelopmentDirectionCard extends StatelessWidget {
               width: 44,
               height: 44,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    PromoTheme.tealDark.withValues(alpha: 0.15),
-                    PromoTheme.purple.withValues(alpha: 0.15),
-                  ],
-                ),
+                color: PromoColors.gold.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(direction.icon, color: PromoTheme.deepNavy, size: 24),
+              child: Icon(
+                direction.icon,
+                color: PromoColors.deepNavy,
+                size: 24,
+              ),
             ),
             const SizedBox(height: 16),
             Text(
@@ -104,7 +87,7 @@ class DevelopmentDirectionCard extends StatelessWidget {
               direction.description,
               style: Theme.of(
                 context,
-              ).textTheme.bodyMedium?.copyWith(fontSize: 14),
+              ).textTheme.bodyMedium?.copyWith(fontSize: 14, height: 1.65),
             ),
           ],
         ),
@@ -127,15 +110,17 @@ class MonetizationCardWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(card.icon, color: PromoTheme.purple, size: 28),
+            Icon(card.icon, color: PromoColors.gold, size: 28),
             const SizedBox(height: 14),
             Text(card.title, style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 14),
+            const PromoBadge(label: '수익 모델', style: PromoBadgeStyle.category),
             const SizedBox(height: 8),
             Text(
               card.description,
               style: Theme.of(
                 context,
-              ).textTheme.bodyMedium?.copyWith(fontSize: 14),
+              ).textTheme.bodyMedium?.copyWith(fontSize: 14, height: 1.65),
             ),
           ],
         ),

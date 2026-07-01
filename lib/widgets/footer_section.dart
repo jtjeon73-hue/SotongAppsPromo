@@ -29,7 +29,7 @@ class FooterSection extends StatelessWidget {
               Text(
                 'Sotong Apps Lab',
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: PromoTheme.teal,
+                  color: PromoColors.goldLight,
                   fontWeight: FontWeight.w600,
                 ),
               ),
