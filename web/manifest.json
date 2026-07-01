@@ -1,0 +1,35 @@
+{
+    "name": "소통웨어 앱개발",
+    "short_name": "Sotong Apps",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0A1628",
+    "theme_color": "#0A1628",
+    "description": "소통웨어 앱개발 사업 총괄 홍보사이트 - AI 앱 포트폴리오",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
