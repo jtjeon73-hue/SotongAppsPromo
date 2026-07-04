@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../data/sample_apps_data.dart';
+import '../data/promo_contact.dart';
 import '../theme/promo_theme.dart';
 
 class FooterSection extends StatelessWidget {
@@ -43,7 +43,7 @@ class FooterSection extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                'Contact: $contactEmail',
+                'Contact: ${PromoContact.email} · 소통총관제 연동',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Colors.white.withValues(alpha: 0.7),
                 ),

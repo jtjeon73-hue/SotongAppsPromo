@@ -6,6 +6,7 @@ import '../theme/promo_theme.dart';
 import '../widgets/app_category_card.dart';
 import '../widgets/app_project_card.dart';
 import '../widgets/app_roadmap_section.dart';
+import '../widgets/sotong_control_hub_section.dart';
 import '../widgets/contact_section.dart';
 import '../widgets/development_process_section.dart';
 import '../widgets/footer_section.dart';
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final _scrollController = ScrollController();
   final _portfolioKey = GlobalKey();
   final _developingKey = GlobalKey();
+  final _hubKey = GlobalKey();
   final _contactKey = GlobalKey();
 
   void _scrollTo(GlobalKey key) {
@@ -56,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: HeroSection(
                 onPortfolioTap: () => _scrollTo(_portfolioKey),
                 onDevelopingTap: () => _scrollTo(_developingKey),
-                onContactTap: () => _scrollTo(_contactKey),
+                onContactTap: () => _scrollTo(_hubKey),
               ),
             ),
             SliverToBoxAdapter(
@@ -167,6 +169,10 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverToBoxAdapter(
               key: _developingKey,
               child: const AppRoadmapSection(),
+            ),
+            SliverToBoxAdapter(
+              key: _hubKey,
+              child: const SotongControlHubSection(),
             ),
             SliverToBoxAdapter(key: _contactKey, child: const ContactSection()),
             const SliverToBoxAdapter(child: FooterSection()),
