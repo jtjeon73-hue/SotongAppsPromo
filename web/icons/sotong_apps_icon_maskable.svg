@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="40" x2="920" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#163A5F"/>
+      <stop offset="55%" stop-color="#102A43"/>
+      <stop offset="100%" stop-color="#0B1C30"/>
+    </linearGradient>
+    <linearGradient id="sFill" x1="280" y1="220" x2="760" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#53D8FB"/>
+      <stop offset="45%" stop-color="#1D72E8"/>
+      <stop offset="100%" stop-color="#7C5CFC"/>
+    </linearGradient>
+    <linearGradient id="modA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#53D8FB"/>
+      <stop offset="100%" stop-color="#10B9B0"/>
+    </linearGradient>
+    <linearGradient id="modB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1D72E8"/>
+      <stop offset="100%" stop-color="#7C5CFC"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g transform="translate(512 512) scale(0.72) translate(-512 -512)">
+    <rect x="140" y="140" width="744" height="744" rx="168" ry="168" fill="#0A1628" fill-opacity="0.28"/>
+    <g fill="none" stroke="#10B9B0" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" opacity="0.85">
+      <path d="M260 300 H380"/><path d="M644 300 H764"/>
+      <path d="M260 724 H380"/><path d="M644 724 H764"/>
+      <path d="M300 260 V380"/><path d="M724 260 V380"/>
+      <path d="M300 644 V764"/><path d="M724 644 V764"/>
+    </g>
+    <g fill="#53D8FB">
+      <circle cx="260" cy="300" r="16"/><circle cx="764" cy="300" r="16"/>
+      <circle cx="260" cy="724" r="16"/><circle cx="764" cy="724" r="16"/>
+      <circle cx="300" cy="260" r="12"/><circle cx="724" cy="260" r="12"/>
+      <circle cx="300" cy="764" r="12"/><circle cx="724" cy="764" r="12"/>
+    </g>
+    <rect x="214" y="214" width="112" height="112" rx="28" ry="28" fill="url(#modA)"/>
+    <rect x="698" y="214" width="112" height="112" rx="28" ry="28" fill="url(#modB)"/>
+    <rect x="214" y="698" width="112" height="112" rx="28" ry="28" fill="url(#modB)"/>
+    <rect x="698" y="698" width="112" height="112" rx="28" ry="28" fill="url(#modA)"/>
+    <path fill="url(#sFill)" d="M652 300 C652 248 610 220 512 220 C392 220 348 268 348 330 C348 392 392 420 512 448 C620 474 676 504 676 592 C676 698 610 764 480 764 C370 764 312 720 292 650 L372 618 C386 660 424 696 480 696 C568 696 592 656 592 604 C592 552 556 528 460 504 C340 476 268 436 268 330 C268 224 350 148 512 148 C670 148 736 214 736 300 Z"/>
+    <circle cx="512" cy="512" r="36" fill="#53D8FB"/>
+    <circle cx="512" cy="512" r="16" fill="#102A43"/>
+  </g>
+</svg>

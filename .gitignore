@@ -28,6 +28,10 @@ migrate_working_dir/
 firebase-debug.log
 firestore-debug.log
 
+# Node (icon render tooling)
+node_modules/
+package-lock.json
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id

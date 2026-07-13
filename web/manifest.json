@@ -1,11 +1,11 @@
 {
     "name": "소통웨어 앱개발",
-    "short_name": "Sotong Apps",
+    "short_name": "소통앱",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0A1628",
-    "theme_color": "#0A1628",
-    "description": "소통웨어 앱개발 사업 총괄 홍보사이트 - AI 앱 포트폴리오",
+    "background_color": "#102A43",
+    "theme_color": "#1D72E8",
+    "description": "소통웨어 앱개발 사업과 주요 앱 프로젝트를 소개하는 공식 프로모 사이트",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
