@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'screens/home_screen.dart';
+import 'navigation/app_router.dart';
 import 'theme/promo_theme.dart';
 
 class SotongAppsPromoApp extends StatelessWidget {
-  const SotongAppsPromoApp({super.key});
+  SotongAppsPromoApp({super.key});
+
+  final _router = createAppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: '소통웨어 앱개발',
       debugShowCheckedModeBanner: false,
       theme: PromoTheme.lightTheme(),
-      home: const HomeScreen(),
+      routerConfig: _router,
     );
   }
 }
